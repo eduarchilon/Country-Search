@@ -1,8 +1,15 @@
-function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1)
-};
-
 const url = 'https://restcountries.com/v3.1/all';
+const inputSearch = document.getElementById('#search-input');
+
+let inputSearchValue = inputSearch.value;
+
+function searchCountry(inputSearchValue) {
+    const response = await fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        
+    })
+}
 
 const loadFlags = async () => {
 
@@ -14,6 +21,7 @@ const loadFlags = async () => {
         });
     })
     .catch (error => console.log(error));
+
 
 }
 
