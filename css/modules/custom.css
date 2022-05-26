@@ -49,15 +49,16 @@
     font-weight: bolder;
 }
 
+.country{
+    margin-top: 40px;
+}
+
 .country__container{
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
 }
 
-.country{
-    margin-top: 40px;
-}
 
 .country__content{
     background-color: var(--bg-block);

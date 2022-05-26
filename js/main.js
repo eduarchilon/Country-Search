@@ -1,3 +1,5 @@
+import "../js/app/busqueda.js"
+import "../js/app/Flag.js"
 import { result } from '../js/vendor/fetch.js'
 
 
