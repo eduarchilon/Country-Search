@@ -1,4 +1,16 @@
-const url = 'https://restcountries.com/v3.1/all';
+import { result } from '../fetch.js'
+
+console.log(result);
+
+/*
+agarrar el valor del input
+y de acuerdo a las letras buscar los paises
+*/
+
+
+
+
+/*
 const inputSearch = document.getElementById('#search-input');
 
 let inputSearchValue = inputSearch.value;
@@ -26,3 +38,4 @@ const loadFlags = async () => {
 }
 
 loadFlags();
+*/
