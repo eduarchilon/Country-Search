@@ -1,0 +1,22 @@
+/**
+ * ======================================== 
+ * Global
+ * ========================================
+**/
+body{
+	font-family: var(--base-font);
+}
+
+.container {
+	max-width: 1440px;
+	margin: auto;
+	padding: 0 8vw;
+}
+
+/* .btn{
+	padding: 10px;
+	font-weight: 700;
+	border-radius: 5px;
+	border: none;
+	width: fit-content;
+} */
