@@ -2,6 +2,10 @@ import "../js/app/busqueda.js"
 import "../js/app/Flag.js"
 import { result } from './fetch.js'
 
+const input = document.getElementById('#searchInput');
+let inputvalue = input.value;
+
+
 /*cambios edu */
 const createCountryCard = ({ flags, name, population, region, capital }) => {
     let countries = document.getElementById('country__container');
@@ -18,12 +22,14 @@ const createCountryCard = ({ flags, name, population, region, capital }) => {
                     `;
 }
 
+
 const createSelect = (continent) =>{
     let regions = document.getElementById('select');
     regions.innerHTML += `
         <option value=${continent} id="${continent}">${continent}</option>
         `
 }
+
 
 const getCountries = async (api) =>{
     const arrayCountries = await api.json();
@@ -47,6 +53,26 @@ const getCountries = async (api) =>{
     
 }
 
-getCountries(result);
+
 
 /*fin edu */
+
+const getCountriesByResearch = async (inputvalue) => {
+    const value = inputvalue;
+    const result = await fetch(`https://restcountries.com/v3.1/name/${value}`);
+    if(input.value === ""){
+        getCountries();
+    } else {
+        if(result.status === 200){
+            getCountries(result);
+        } else if (result.status === 404) {
+            alert("We couldnt find this country");
+        }
+    }
+    return results;
+}
+
+
+
+getCountries(result);
+

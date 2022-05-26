@@ -12,16 +12,14 @@
   <meta property="og:url" content="">
   <meta property="og:image" content="">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+ 
   <!--
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    -->
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -37,13 +35,15 @@
 
   <main class="main">
     <div class="main__container container">
+
       <section class="input__container">
         <div class="input search__container">
           <div class="search__content">
             <i class='fa fa-search search-icon'></i>
-            <input type="search" class="search-input" placeholder="Search for a country">
+            <input type="search" class="search-input" placeholder="Search for a country" id="searchInput">
           </div>
         </div>
+
         <div class="input select__container">
           <select name="select" id="select" class="select">
             <option selected disabled>Filter by region</option>
@@ -52,11 +52,17 @@
         </div>
       </section>
       
+<<<<<<< HEAD
       <section class="country">
         <div class="country__container" id="country__container">
           <!--Banderas-->
         </div>
+=======
+      <section class="country" id="country">
+        <div class="country__container" id="country__container"></div>
+>>>>>>> d6dfbfb74ee3be346e03cfd9d3445ff866739cd2
       </section>
+
     </div>
   </main>
 
