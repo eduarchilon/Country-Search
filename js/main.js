@@ -1,6 +1,5 @@
 import "../js/app/busqueda.js"
-import "../js/app/Flag.js"
-import { result } from '../js/vendor/fetch.js'
+import { result } from './fetch.js'
 
 
 const createCountryCard = ({ flags, name, population, region, capital }) => {
