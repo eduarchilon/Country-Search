@@ -25,22 +25,28 @@ const getCountries = async (api) =>{
     });
 }
 
-
-const getCountriesByResearch = async (inputvalue) => {
-    const value = inputvalue;
+const getAllCharacters = async (event) => {
+    const value = event.target.value;
     const result = await fetch(`https://restcountries.com/v3.1/name/${value}`);
-    if(input.value === ""){
-        getCountries();
-    } else {
-        if(result.status === 200){
-            getCountries(result);
-        } else if (result.status === 404) {
-            alert("We couldnt find this country");
-        }
-    }
+    const { results } = await result.json();
+    deleteAllCards();
+    results.forEach(item => {
+      createCountryCard(item);
+    })
     return results;
 }
 
-
+const deleteAllCards = () => {
+    const charCards = document.querySelectorAll('.card');
+    charCards.forEach(card => card.remove());
+};
+  
+let timer = 0;
+const debouncedFetch = (value) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => getAllCharacters(value), 1000);
+};
+  
+searchInput.addEventListener('input', debouncedFetch);
 
 getCountries(result);
