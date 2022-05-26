@@ -16,7 +16,7 @@ export function createFlagCountry(country) {
   export function createFlagContinent(continent) {
     let flags = ''
     for (let i = 0; i < continent.length; i++) {
-      flags += createFlag(continent[i])
+      flags += createFlagCountry(continent[i])
     }
     document.getElementById('country__container').innerHTML = flags;
   }
