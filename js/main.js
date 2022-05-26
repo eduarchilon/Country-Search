@@ -1,6 +1,7 @@
 import { result } from './fetch.js'
 
 const input = document.getElementById('#searchInput');
+let inputvalue = input.value;
 
 const createCountryCard = ({ flags, name, population, region, capital }) => {
     let countries = document.getElementById('country__container');
@@ -25,15 +26,14 @@ const getCountries = async (api) =>{
 }
 
 
-const getCountriesByResearch = async (event) => {
-    const value = event.target.value;
+const getCountriesByResearch = async (inputvalue) => {
+    const value = inputvalue;
     const result = await fetch(`https://restcountries.com/v3.1/name/${value}`);
-    const results = await result.json();
     if(input.value === ""){
         getCountries();
     } else {
         if(result.status === 200){
-            getCountries(results);
+            getCountries(result);
         } else if (result.status === 404) {
             alert("We couldnt find this country");
         }
@@ -41,6 +41,6 @@ const getCountriesByResearch = async (event) => {
     return results;
 }
 
-input.addEventListener('input', getCountriesByResearch);
+
 
 getCountries(result);
