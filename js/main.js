@@ -1,8 +1,8 @@
 import "../js/app/busqueda.js"
 import "../js/app/Flag.js"
-import { result } from '../js/vendor/fetch.js'
+import { result } from './fetch.js'
 
-
+/*cambios edu */
 const createCountryCard = ({ flags, name, population, region, capital }) => {
     let countries = document.getElementById('country__container');
     countries.innerHTML += `
@@ -18,13 +18,35 @@ const createCountryCard = ({ flags, name, population, region, capital }) => {
                     `;
 }
 
-const getCountries = async (api) =>{
+const createSelect = (continent) =>{
+    let regions = document.getElementById('select');
+    regions.innerHTML += `
+        <option value=${continent} id="${continent}">${continent}</option>
+        `
+}
 
+const getCountries = async (api) =>{
     const arrayCountries = await api.json();
+    const continent = [];
+    console.log(arrayCountries)
+    arrayCountries.forEach(element => {
+        const {region} = element
+        if(!continent.includes(region)){
+            continent.push(region)
+        }
+    });
+
+    continent.forEach(element => {
+        createSelect(element)
+    });
+
     arrayCountries.forEach(element => {
         createCountryCard(element);
     });
+    
+    
 }
 
 getCountries(result);
 
+/*fin edu */
