@@ -1,1 +1,1 @@
-console.log("prueba");
+import "../js/app/busqueda.js"
