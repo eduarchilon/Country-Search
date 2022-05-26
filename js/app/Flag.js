@@ -1,4 +1,6 @@
-export function createFlagCountry(country) {
+const country__container = document.getElementById('#country__container');
+
+function createFlagCountry(country) {
     let flag = ''
     flag += `<div class="country__content">
             <img class="country__image" src="${country.flags.png}"></img>
@@ -10,13 +12,16 @@ export function createFlagCountry(country) {
                 </div>
             </div>
         </div>`
-    return (document.getElementById('country__container').innerHTML = flag);
+    let countryContent = country__container.innerHTML = flag;
+    return countryContent;
   }
   
+
+  /*
   export function createFlagContinent(continent) {
     let flags = ''
     for (let i = 0; i < continent.length; i++) {
       flags += createFlagCountry(continent[i])
     }
-    document.getElementById('country__container').innerHTML = flags;
-  }
+    country.innerHTML = flags;
+  }*/
