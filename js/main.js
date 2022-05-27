@@ -1,16 +1,14 @@
 import "../js/app/busqueda.js"
-import "../js/app/Flag.js"
+import "../js/app/filtro.js"
 import { result } from './fetch.js'
-
-const input = document.getElementById('#searchInput');
-let inputvalue = input.value;
+import { getCountriesOfRegions } from "../js/app/filtro.js";
 
 
-/*cambios edu */
-const createCountryCard = ({ flags, name, population, region, capital }) => {
-    let countries = document.getElementById('country__container');
-    countries.innerHTML += `
-                    <div class="country__content">
+export const arrayCountries = await result.json();
+
+export const createCountryCard = ({ flags, name, population, region, capital }) => {
+    const countries = `
+                    <div class="country__content" id="country__content">
                         <img class="country__image" src="${flags.png}" alt="${name}" width="200">
                         <div class="country__information">
                             <h5 class="country__name">${name}</h5>
@@ -19,9 +17,9 @@ const createCountryCard = ({ flags, name, population, region, capital }) => {
                             <p class="country__capital">Capital: <span>${capital}</span></p>
                         </div>
                     </div>    
-                    `;
+                    `
+    return countries;
 }
-
 
 const createSelect = (continent) =>{
     let regions = document.getElementById('select');
@@ -30,12 +28,9 @@ const createSelect = (continent) =>{
         `
 }
 
-
-const getCountries = async (api) =>{
-    const arrayCountries = await api.json();
+const getSelect = async (api)=>{
     const continent = [];
-    console.log(arrayCountries)
-    arrayCountries.forEach(element => {
+    api.forEach(element => {
         const {region} = element
         if(!continent.includes(region)){
             continent.push(region)
@@ -45,46 +40,60 @@ const getCountries = async (api) =>{
     continent.forEach(element => {
         createSelect(element)
     });
+}
 
-    arrayCountries.forEach(element => {
-        createCountryCard(element);
+export const getCountries = async (api) =>{
+    let html = document.getElementById('country__container')
+    api.forEach(element => {
+        html.innerHTML +=createCountryCard(element);
     });
-    
-    
 }
 
-<<<<<<< HEAD
+console.log(arrayCountries)
+
+// getCountries(arrayCountries);
+// getSelect(arrayCountries)
+
+// getCountriesOfRegions(arrayCountries)
 
 
-/*fin edu */
 
-const getCountriesByResearch = async (inputvalue) => {
-    const value = inputvalue;
-=======
+
+const input = document.getElementById('searchInput');
+
+
 const getAllCharacters = async (event) => {
+    event.preventDefault()
     const value = event.target.value;
->>>>>>> 42d3b439bfdd1397125d441078e0814cf84ed3b1
-    const result = await fetch(`https://restcountries.com/v3.1/name/${value}`);
-    const { results } = await result.json();
-    deleteAllCards();
-    results.forEach(item => {
-      createCountryCard(item);
-    })
-    return results;
+    let html = document.getElementById('country__container')
+    try {
+        const result = await fetch(`https://restcountries.com/v2/name/${value}`);
+        const array = await result.json();
+
+        html.innerHTML = '';
+        array.forEach(item => {
+            let upper = item.name.toLowerCase()
+            let min = upper.charAt(0)
+            if (upper.includes(value.charAt(0)) && upper.includes(value.charAt(1)) && upper.includes(value.charAt(2)) && upper.includes(value.charAt(3)) || upper.charAt(0) === min) {
+                html.innerHTML += createCountryCard(item)
+                console.log(item)
+            } else {
+                console.log("No esta")
+            }
+        })
+    } catch (error) {
+        console.log("error", error)
+    }
+    return result;
 }
 
-const deleteAllCards = () => {
-    const charCards = document.querySelectorAll('.card');
-    charCards.forEach(card => card.remove());
-};
-  
 let timer = 0;
-const debouncedFetch = (value) => {
+const  debouncedFetch = (input) =>{
     clearTimeout(timer);
-    timer = setTimeout(() => getAllCharacters(value), 1000);
-};
-  
-searchInput.addEventListener('input', debouncedFetch);
+    timer = setTimeout(() => getAllCharacters(input), 1000);
+}
 
-getCountries(result);
+
+input.addEventListener('input', debouncedFetch);
+
 
