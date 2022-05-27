@@ -8,7 +8,7 @@ export const getCountriesOfRegions=({region})=>{
         html.innerHTML = '';
         for (let i = 0; i < arrayCountries.length; i++) {
             if (selectRegion == arrayCountries[i].region) {
-                console.log(arrayCountries[i])
+                // console.log(arrayCountries[i])
                 html.innerHTML += createCountryCard(arrayCountries[i])
             }
         }

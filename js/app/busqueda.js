@@ -1,20 +1,34 @@
-// function capitalizeFirstLetter(str) {
-//     return str.charAt(0).toUpperCase() + str.slice(1)
-// };
+import { createCountryCard } from "../main.js";
 
-// const url = 'https://restcountries.com/v3.1/all';
+const input = document.getElementById('searchInput');
 
-// const loadFlags = async () => {
+export const getAllCharacters = async (event) => {
+    const value = event.target.value;
+    let html = document.getElementById('country__container')
+    try {
+        const result = await fetch(`https://restcountries.com/v2/name/${value}`);
+        const array = await result.json();
 
-//     await fetch(url)
-//     .then(res => res.json())
-//     .then(data => {
-//         data.forEach(country => {
-//             console.log(country.name)
-//         });
-//     })
-//     .catch (error => console.log(error));
+        html.innerHTML = '';
+        array.forEach(item => {
+            let upper = item.name.toLowerCase()
+            let min = upper.charAt(0)
+            if (upper.includes(value.charAt(0)) && upper.includes(value.charAt(1)) && upper.includes(value.charAt(2)) && upper.includes(value.charAt(3)) || upper.charAt(0) === min) {
+                html.innerHTML += createCountryCard(item)
+                // console.log(item)
+            } else {
+                console.log("No existe")
+            }
+        })
+    } catch (error) {
+        console.log("error: ", error)
+    }
+}
 
-// }
+let timer = 0;
+export const debouncedFetch = (input) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => getAllCharacters(input), 1000);
+}
 
-// loadFlags();
+input.addEventListener('input', debouncedFetch);

@@ -3,19 +3,17 @@ import "../js/app/filtro.js"
 import { result } from './fetch.js'
 import { getCountriesOfRegions } from "../js/app/filtro.js";
 
-
-//este es
 export const arrayCountries = await result.json();
 
 export const createCountryCard = ({ flags, name, population, region, capital }) => {
     const countries = `
                     <div class="country__content" id="country__content">
-                        <img class="country__image" src="${flags.png}" alt="${name}" width="200">
+                        <img class="country__image" src="${flags.png}" alt="${name}" width="250">
                         <div class="country__information">
-                            <h5 class="country__name">${name}</h5>
-                            <p class="country__population">Population: <span>${population}</span></p>
-                            <p class="country__region">Region: <span>${region}</span></p>
-                            <p class="country__capital">Capital: <span>${capital}</span></p>
+                            <h5 class="country__name text"> ${name}</h5>
+                            <p class="country__population text">Population: <span class="text text-info"> ${population}</span></p>
+                            <p class="country__region text">Region: <span class="text text-info"> ${region}</span></p>
+                            <p class="country__capital text">Capital: <span class="text text-info"> ${capital}</span></p>
                         </div>
                     </div>    
                     `
@@ -50,52 +48,10 @@ export const getCountries = async (api) =>{
     });
 }
 
-console.log(arrayCountries)
+getCountries(arrayCountries);
+getSelect(arrayCountries)
 
-//este es
-// getCountries(arrayCountries);
-// getSelect(arrayCountries)
+getCountriesOfRegions(arrayCountries)
 
-// getCountriesOfRegions(arrayCountries)
-
-
-
-//este es
-const input = document.getElementById('searchInput');
-
-
-const getAllCharacters = async (event) => {
-    event.preventDefault()
-    const value = event.target.value;
-    let html = document.getElementById('country__container')
-    try {
-        const result = await fetch(`https://restcountries.com/v2/name/${value}`);
-        const array = await result.json();
-
-        html.innerHTML = '';
-        array.forEach(item => {
-            let upper = item.name.toLowerCase()
-            let min = upper.charAt(0)
-            if (upper.includes(value.charAt(0)) && upper.includes(value.charAt(1)) && upper.includes(value.charAt(2)) && upper.includes(value.charAt(3)) || upper.charAt(0) === min) {
-                html.innerHTML += createCountryCard(item)
-                console.log(item)
-            } else {
-                console.log("No esta")
-            }
-        })
-    } catch (error) {
-        console.log("error", error)
-    }
-    return result;
-}
-
-let timer = 0;
-const  debouncedFetch = (input) =>{
-    clearTimeout(timer);
-    timer = setTimeout(() => getAllCharacters(input), 1000);
-}
-
-//este es
-input.addEventListener('input', debouncedFetch);
 
 
