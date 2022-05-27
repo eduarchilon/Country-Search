@@ -4,6 +4,7 @@ import { result } from './fetch.js'
 import { getCountriesOfRegions } from "../js/app/filtro.js";
 
 
+//este es
 export const arrayCountries = await result.json();
 
 export const createCountryCard = ({ flags, name, population, region, capital }) => {
@@ -51,6 +52,7 @@ export const getCountries = async (api) =>{
 
 console.log(arrayCountries)
 
+//este es
 // getCountries(arrayCountries);
 // getSelect(arrayCountries)
 
@@ -58,7 +60,7 @@ console.log(arrayCountries)
 
 
 
-
+//este es
 const input = document.getElementById('searchInput');
 
 
@@ -93,7 +95,7 @@ const  debouncedFetch = (input) =>{
     timer = setTimeout(() => getAllCharacters(input), 1000);
 }
 
-
+//este es
 input.addEventListener('input', debouncedFetch);
 
 
