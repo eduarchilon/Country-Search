@@ -1,6 +1,6 @@
-- Proyecto Hecho por Jazmin de Stefano y Eduar Chilon  - GM2
+- Proyecto Hecho por Jazmin de Stefano y Eduar Chilon  - GM2 -
 
-- Links del deploy:
+Links del deploy:
 
 https://eduarchilon.github.io/Country-Search/
 
